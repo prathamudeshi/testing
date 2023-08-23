@@ -72,3 +72,11 @@ class Course(models.Model):
     scheme_name = models.CharField(max_length=100)
     credit = models.IntegerField()
     hours = models.IntegerField()
+
+
+class AcademicYear(models.Model):
+    name = models.CharField(max_length=20, unique=True)
+    is_odd_semester = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.name

@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Faculty, Staff, Student, Course
+from .models import Faculty, Staff, Student, Course, AcademicYear
 
 class FacultyAdmin(admin.ModelAdmin):
     # list_display = [field.name for field in Faculty._meta.get_fields()]
@@ -19,8 +19,12 @@ class StudentAdmin(admin.ModelAdmin):
 class CourseAdmin(admin.ModelAdmin):
     list_display = [field.name for field in Course._meta.get_fields()]
 
+class AcademicYearAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in AcademicYear._meta.get_fields()]
+
 
 admin.site.register(Faculty,FacultyAdmin)
 admin.site.register(Staff,StaffAdmin)
 admin.site.register(Student,StudentAdmin)
 admin.site.register(Course,CourseAdmin)
+admin.site.register(AcademicYear,AcademicYearAdmin)

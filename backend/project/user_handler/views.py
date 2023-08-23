@@ -7,6 +7,38 @@ import csv
 from . import serializers
 from . import models
 from rest_framework.views import APIView
+from django.shortcuts import render
+
+
+
+from .models import AcademicYear
+from .serializers import AcademicYearSerializer
+
+class AcademicYearViewSet(viewsets.ModelViewSet):
+    def create(request):
+        if request.method=="POST":
+            data=request.POST
+            AY_name=data.get['AY_name']
+            odd_sem_checkbox = request.POST.get('odd_sem_checkbox')
+            if odd_sem_checkbox == 'on':
+                AY_is_odd_semester = True
+            else:
+                AY_is_odd_semester = False
+
+            AcademicYear.objects.create(
+                AY_name=AY_name,
+                AY_is_odd_semester=AY_is_odd_semester,
+            )
+
+
+
+        return render(request, )
+
+
+
+    queryset = AcademicYear.objects.all()
+    serializer_class = AcademicYearSerializer
+
 
 class FacultyViewSet(viewsets.ViewSet):
     def list(self, request):
